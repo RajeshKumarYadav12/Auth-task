@@ -8,8 +8,6 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
-  // Disable telemetry
-  telemetry: false,
 };
 
 module.exports = nextConfig;

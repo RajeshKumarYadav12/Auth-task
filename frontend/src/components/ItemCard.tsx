@@ -7,12 +7,14 @@ interface Item {
   category: string;
   status: string;
   priority: string;
-  user?: {
+  user: {
+    _id: string;
     name: string;
     email: string;
     role: string;
   };
   createdAt: string;
+  updatedAt: string;
 }
 
 interface ItemCardProps {
