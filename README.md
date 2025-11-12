@@ -386,3 +386,5 @@ Created as a full-stack authentication demonstration project.
 - Tailwind CSS
 - Express.js
 - JWT.io
+#   A u t h - t a s k  
+ 
