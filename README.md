@@ -1,390 +1,188 @@
-# Role-Based Authentication System
-
-A full-stack web application with role-based authentication featuring secure user management and protected routes.
-
-## 🚀 Tech Stack
-
-### Frontend
-
-- **Next.js 14** - React framework with TypeScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **Axios** - HTTP client for API requests
-
-### Backend
-
-- **Node.js & Express** - Server framework
-- **MongoDB Atlas** - Cloud database
-- **Mongoose** - MongoDB ODM
-- **bcryptjs** - Password hashing
-- **JWT** - JSON Web Tokens for authentication
-
-## 📋 Features
-
-- ✅ User registration with role selection (User/Admin)
-- ✅ Secure password hashing with bcrypt
-- ✅ JWT token-based authentication
-- ✅ Protected routes with middleware
-- ✅ Role-based access control
-- ✅ Admin dashboard to view all users
-- ✅ User dashboard with personal data
-- ✅ Responsive UI with Tailwind CSS
-- ✅ TypeScript for type safety
-
-## 📁 Project Structure
-
-```
-role-based-auth-app/
-│
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.js                # MongoDB connection
-│   │   ├── middleware/
-│   │   │   └── authMiddleware.js    # JWT verification middleware
-│   │   ├── models/
-│   │   │   └── User.js              # Mongoose schema
-│   │   ├── routes/
-│   │   │   └── authRoutes.js        # Signup/Login/Me routes
-│   │   ├── controllers/
-│   │   │   └── authController.js    # Logic for signup/login
-│   │   ├── utils/
-│   │   │   └── generateToken.js     # JWT generator helper
-│   │   └── server.js                # Express app entry point
-│   ├── package.json
-│   ├── .env.example
-│   └── README.md
-│
-├── frontend/
-│   ├── src/
-│   │   ├── pages/
-│   │   │   ├── index.tsx            # Home/welcome page
-│   │   │   ├── signup.tsx           # Signup page with role select
-│   │   │   ├── login.tsx            # Login page
-│   │   │   ├── dashboard.tsx        # Protected dashboard
-│   │   │   ├── _app.tsx             # App wrapper
-│   │   │   └── _document.tsx        # Document wrapper
-│   │   ├── components/
-│   │   │   ├── Header.tsx           # Navigation header
-│   │   │   ├── Layout.tsx           # Page layout wrapper
-│   │   │   └── ProtectedRoute.tsx   # Route guard component
-│   │   ├── lib/
-│   │   │   └── api.ts               # Axios configuration
-│   │   ├── styles/
-│   │   │   └── globals.css          # Global styles
-│   │   └── utils/
-│   │       └── auth.ts              # Auth utility functions
-│   ├── package.json
-│   ├── tailwind.config.js
-│   ├── next.config.js
-│   ├── tsconfig.json
-│   ├── .env.example
-│   └── README.md
-│
-├── .gitignore
-└── README.md
-```
-
-## 🛠️ Setup Instructions
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-- MongoDB Atlas account (free tier available)
-
-### Backend Setup
-
-1. **Navigate to backend folder:**
-
-   ```bash
-   cd backend
-   ```
+Role-Based Task Manager App (Next.js + Node.js + MongoDB)
 
-2. **Install dependencies:**
+A fully responsive Full-Stack Web Application with Role-Based Authentication (Admin/User) and complete CRUD, Search, Filtering, Pagination, and Validation features.
 
-   ```bash
-   npm install
-   ```
 
-3. **Create environment file:**
 
-   ```bash
-   copy .env.example .env
-   ```
+🧩 Tech Stack
 
-4. **Configure MongoDB Atlas:**
+Frontend: Next.js • TypeScript • Tailwind CSS • Zod
+Backend: Node.js • Express.js • MongoDB Atlas (Mongoose)
+Auth: JWT • bcrypt
+Deployment: Vercel (Frontend) • Render/Railway (Backend)
 
-   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-   - Create a free account and cluster
-   - Click "Connect" → "Connect your application"
-   - Copy the connection string
-   - Update `.env` file with your MongoDB URI
 
-5. **Update `.env` file:**
 
-   ```env
-   PORT=5000
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/role-auth-db?retryWrites=true&w=majority
-   JWT_SECRET=your_super_secret_key_change_this
-   JWT_EXPIRE=7d
-   NODE_ENV=development
-   ```
+✨ Features
+🔐 Authentication
 
-6. **Start the backend server:**
-   ```bash
-   npm run dev
-   ```
-   Server will run on `http://localhost:5000`
+Role-based signup/login (Admin or User)
 
-### Frontend Setup
+Secure password hashing (bcrypt)
 
-1. **Navigate to frontend folder:**
+JWT authentication
 
-   ```bash
-   cd frontend
-   ```
+Protected routes & auto-logout
 
-2. **Install dependencies:**
 
-   ```bash
-   npm install
-   ```
 
-3. **Create environment file:**
+Dashboards
 
-   ```bash
-   copy .env.example .env.local
-   ```
+Admin Dashboard:
+View all users, manage all items, see ownership info
 
-4. **Update `.env.local` file:**
+User Dashboard:
+Manage personal items only
 
-   ```env
-   NEXT_PUBLIC_API_URL=http://localhost:5000/api
-   ```
+Personalized greeting: Welcome, [Name] (Role)
 
-5. **Start the frontend server:**
-   ```bash
-   npm run dev
-   ```
-   Frontend will run on `http://localhost:3000`
 
-## 🧪 Testing the Application
+📝 CRUD Operations
 
-### 1. Create an Admin User
+Create, Read, Update, Delete items
 
-- Go to `http://localhost:3000/signup`
-- Fill in the form:
-  - Name: Admin User
-  - Email: admin@example.com
-  - Password: admin123
-  - Role: **Admin**
-- Click "Sign up"
+Beautiful modal forms with client/server validation
 
-### 2. Create a Regular User
+Confirmation dialogs for delete actions
 
-- Logout and sign up again with:
-  - Name: John Doe
-  - Email: john@example.com
-  - Password: john123
-  - Role: **User**
 
-### 3. Test Login
+🔍 Search & Pagination
 
-- Login with either account
-- You'll be redirected to the dashboard
+Real-time search across item titles and descriptions
 
-### 4. Test Dashboards
+Pagination (9 items per page) with counters and navigation
 
-- **Admin Dashboard**: Shows all registered users in a table
-- **User Dashboard**: Shows only personal information
 
-## 📡 API Endpoints
+🧮 Filtering
 
-### Public Endpoints
+Filter by Category (Work, Personal, Shopping, Health, Other)
 
-| Method | Endpoint           | Description       |
-| ------ | ------------------ | ----------------- |
-| POST   | `/api/auth/signup` | Register new user |
-| POST   | `/api/auth/login`  | Login user        |
+Filter by Status (Active, Pending, Completed)
 
-### Protected Endpoints
+Filter by Priority (Low, Medium, High)
 
-| Method | Endpoint          | Description      | Access        |
-| ------ | ----------------- | ---------------- | ------------- |
-| GET    | `/api/auth/me`    | Get current user | Authenticated |
-| GET    | `/api/auth/users` | Get all users    | Admin only    |
+Reset filters button
 
-### Example Requests
 
-**Signup:**
+🧠 Form Validation (Zod)
 
-```json
-POST http://localhost:5000/api/auth/signup
-Content-Type: application/json
+Client-side + server-side validation
 
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "role": "User"
-}
-```
+Error handling with clear messages
 
-**Login:**
 
-```json
-POST http://localhost:5000/api/auth/login
-Content-Type: application/json
+🧑‍💻 Role-Based Access
 
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
+Admin: Manage all users/items
 
-**Get Current User:**
+User: Access only personal items
 
-```json
-GET http://localhost:5000/api/auth/me
-Authorization: Bearer <your_jwt_token>
-```
+Different UI and statistics for both roles
 
-## 🚀 Deployment
 
-### Deploy Backend
+📊 Real-Time Statistics
 
-#### Option 1: Render
+Total, Active, Pending, and Completed counts
 
-1. Create account on [Render](https://render.com)
-2. Create new Web Service
-3. Connect GitHub repository
-4. Set environment variables
-5. Deploy
+Auto updates on CRUD actions
 
-#### Option 2: Railway
 
-1. Create account on [Railway](https://railway.app)
-2. Create new project from GitHub
-3. Add environment variables
-4. Deploy automatically
 
-### Deploy Frontend
+💅 UI/UX
 
-#### Vercel (Recommended)
+Fully responsive (mobile → desktop)
 
-1. Install Vercel CLI:
+Gradient color-coded cards
 
-   ```bash
-   npm i -g vercel
-   ```
+Smooth animations
 
-2. Deploy from frontend directory:
+Modern, clean design
 
-   ```bash
-   cd frontend
-   vercel
-   ```
 
-3. Set environment variables in Vercel dashboard:
 
-   - `NEXT_PUBLIC_API_URL` = Your backend URL
+⚙️ Environment Variables
 
-4. Production deployment:
-   ```bash
-   vercel --prod
-   ```
+Backend (/backend/.env)
 
-## 🔒 Security Features
-
-- **Password Hashing**: bcrypt with 10 salt rounds
-- **JWT Authentication**: Secure token-based auth
-- **Protected Routes**: Middleware guards on both frontend and backend
-- **Role-Based Access**: Different permissions for Users and Admins
-- **Input Validation**: Server-side validation for all inputs
-- **CORS Enabled**: Cross-origin resource sharing configured
-
-## 🎨 UI Features
-
-- Responsive design for mobile and desktop
-- Modern UI with Tailwind CSS
-- Loading states and error handling
-- Protected route redirects
-- Role-based conditional rendering
-- Toast notifications for user actions
-
-## 📝 Environment Variables
-
-### Backend (.env)
-
-```env
 PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+
+MONGODB_URI=mongodb+srv://<your-connection-string>
+
+JWT_SECRET=hiuyuyugyg7t7666gugu557ft
+
 JWT_EXPIRE=7d
+
 NODE_ENV=development
-```
 
-### Frontend (.env.local)
-
-```env
+Frontend (/frontend/.env.local)
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
-```
 
-## 🐛 Troubleshooting
 
-### Backend Issues
+🚀 How to Run Locally
+1️⃣ Clone Repository
+git clone https://github.com/<your-username>/role-based-task-manager.git
+cd role-based-task-manager
 
-**MongoDB Connection Failed:**
 
-- Check your MongoDB Atlas connection string
-- Ensure your IP is whitelisted in MongoDB Atlas
-- Verify username and password are correct
 
-**JWT Token Error:**
+2️⃣ Run Backend
 
-- Ensure JWT_SECRET is set in .env
-- Check token expiry time
+cd backend
 
-### Frontend Issues
+npm install
 
-**API Connection Failed:**
+npm run dev
 
-- Verify backend is running on correct port
-- Check NEXT_PUBLIC_API_URL in .env.local
-- Ensure CORS is enabled in backend
 
-**Build Errors:**
+Server runs at http://localhost:5000
 
-- Delete node_modules and package-lock.json
-- Run `npm install` again
-- Clear Next.js cache: `rm -rf .next`
 
-## 📚 Additional Enhancements (Optional)
 
-- [ ] Email verification for new users
-- [ ] Password reset functionality
-- [ ] Refresh token implementation
-- [ ] User profile editing
-- [ ] CRUD operations for user items
-- [ ] Form validation with Zod
-- [ ] Rate limiting on API endpoints
-- [ ] Logging with Winston/Morgan
-- [ ] Unit and integration tests
+3️⃣ Run Frontend
 
-## 📄 License
+cd frontend
 
-MIT License - feel free to use this project for learning or production.
+npm install
 
-## 👨‍💻 Author
+npm run dev
 
-Created as a full-stack authentication demonstration project.
 
-## 🙏 Acknowledgments
+Frontend runs at http://localhost:3000
 
-- Next.js Documentation
-- MongoDB Atlas
-- Tailwind CSS
-- Express.js
-- JWT.io
-#   A u t h - t a s k  
- 
+
+
+🧪 Testing Features
+
+Visit http://localhost:3000/signup
+ → Create User/Admin
+
+Login and view the dashboard
+
+Create new items via modal
+
+Test:
+
+Search
+
+Filters
+
+Pagination
+
+Login as Admin to view all users/items
+
+Logout from header menu
+
+
+
+🌍 Deployment Links
+
+Frontend (Vercel): https://your-frontend.vercel.app
+
+Backend (Render/Railway): https://your-backend.onrender.com
+
+
+
+🧑‍💼 Author
+
+Rajesh Kumar Yadav
+CSE @ IIIT Manipur | Full-Stack Developer | AI & ML Enthusiast
